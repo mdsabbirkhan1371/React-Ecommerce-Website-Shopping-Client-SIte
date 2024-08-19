@@ -33,7 +33,7 @@ const Navbar = () => {
 
         <div className="group relative">
           <img
-            className="w-5 cursor-pointer"
+            className="w-5 min-w-5 cursor-pointer"
             src={assets.profile_icon}
             alt=""
           />
