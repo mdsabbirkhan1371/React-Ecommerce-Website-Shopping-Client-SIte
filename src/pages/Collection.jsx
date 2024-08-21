@@ -10,6 +10,7 @@ const Collection = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
+  const [sortType, setSortType] = useState('relevant');
 
   // for click the category
   const toggleCategory = e => {
@@ -37,15 +38,43 @@ const Collection = () => {
         category.includes(item.category)
       );
     }
+    if (subCategory.length > 0) {
+      productsCopy = productsCopy.filter(item =>
+        subCategory.includes(item.subCategory)
+      );
+    }
     setFilterProducts(productsCopy);
   };
-  useEffect(() => {
-    setFilterProducts(products);
-  }, []);
+  // useEffect(() => {
+  //   setFilterProducts(products);
+  // }, []);
+
+  // sort product by price
+
+  const sortProduct = () => {
+    let fpCopy = filterProducts.slice();
+    switch (sortType) {
+      case 'low-high':
+        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
+        break;
+
+      case 'high-low':
+        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
+        break;
+      default:
+        applyFilter();
+        break;
+    }
+  };
 
   useEffect(() => {
     applyFilter();
   }, [category, subCategory]);
+
+  // sort product
+  useEffect(() => {
+    sortProduct();
+  }, [sortType]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
@@ -149,10 +178,13 @@ const Collection = () => {
           <Title text1={'ALL'} text2={'COLLECTIONS'}></Title>
 
           {/* product sort  */}
-          <select className="border-2 border-gray-600 text-sm px-2">
-            <option value="relavent">Sort By : Relavent</option>
+          <select
+            onChange={e => setSortType(e.target.value)}
+            className="border-2 border-gray-600 text-sm px-2"
+          >
+            <option value="relevant">Sort By : Relevant</option>
+            <option value="high-low">Sort By : High to Low</option>
             <option value="low-high">Sort By : Low to High</option>
-            <option value="hig-low">Sort By : High to Low</option>
           </select>
         </div>
         {/* display map all products  */}
