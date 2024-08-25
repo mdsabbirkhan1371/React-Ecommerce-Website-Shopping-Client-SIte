@@ -35,8 +35,8 @@ const RelatedProduct = ({ category, subCategory }) => {
 };
 
 RelatedProduct.propTypes = {
-  category: PropTypes.array,
-  subCategory: PropTypes.array,
+  category: PropTypes.string,
+  subCategory: PropTypes.string,
 };
 
 export default RelatedProduct;
