@@ -4,7 +4,7 @@ const Contact = () => {
       <div className="text-sm font-medium text-gray-600">
         <h2>Contact Us</h2>
         <p>For any query please call us +023839393939</p>
-        <p>Or Send Us Email : support.forever@gmail.com</p>
+        <p>Or Send Us Email : foreversupport@gmail.com</p>
         <p>Office Location : North City,Dhaka-1200</p>
       </div>
       <div className="mt-10">
